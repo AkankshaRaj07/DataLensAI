@@ -50,41 +50,57 @@ GEMINI_API_KEY=your_api_key_here
 ## Architecture & Code Structure
 
 ```mermaid
-graph TD
-    subgraph Frontend [React / Vite Frontend]
-        UI[User Interface]
-        Chat[Chat Window]
-        Visuals[Plotly Charts]
-        Logs[Live Engine Logs]
+flowchart LR
+    subgraph Frontend ["🖥️ React / Vite Frontend"]
+        direction TB
+        UI["Upload UI"]
+        Chat["Chat Interface"]
+        Logs["Live Engine Logs"]
+        Visuals["Plotly Charts"]
     end
 
-    subgraph Backend [FastAPI Backend]
-        API[API Endpoints]
-        Agent[LLM Agent - Gemini 1.5]
+    subgraph Backend ["⚙️ FastAPI Backend"]
+        direction TB
+        API["REST API Endpoints"]
+        Agent["🧠 LLM Agent (Gemini)"]
         
-        subgraph Tools [Agent Tools]
-            SQL[SQL Engine]
-            Pandas[Pandas Sandbox]
-            ChartGen[Chart Generator]
-            Anomaly[Anomaly Detector]
+        subgraph Tools ["🛠️ Agent Tools"]
+            direction TB
+            SQL["SQL Engine"]
+            Pandas["Pandas Sandbox"]
+            ChartGen["Chart Generator"]
+            Anomaly["Anomaly Detector"]
         end
     end
 
-    subgraph Databases [Data Storage]
-        PG[(PostgreSQL<br>Chat Sessions)]
-        Duck[(DuckDB<br>CSV Data)]
+    subgraph Data ["🗄️ Data Storage"]
+        direction TB
+        Duck[("🦆 DuckDB<br>(In-Memory CSV)")]
+        PG[("🐘 PostgreSQL<br>(Chat Sessions)")]
     end
 
-    UI -->|Upload CSV| API
-    Chat -->|Ask Question| API
-    API --> Agent
-    Agent <--> Tools
-    SQL <--> Duck
-    Pandas <--> Duck
-    Anomaly <--> Duck
-    API <--> PG
-    Tools -->|JSON Results| Agent
-    Agent -->|Markdown & Chart Config| Chat
+    %% High-level Data Flow
+    UI -->|File Upload| API
+    Chat <-->|Messages & Charts| API
+    
+    API <-->|Session State| PG
+    API <-->|Context & Tools| Agent
+    
+    Agent <-->|Execute| Tools
+    SQL <-->|Query| Duck
+    Pandas <-->|Analyze| Duck
+    Anomaly <-->|Scan| Duck
+
+    %% Styling
+    classDef frontend fill:#0d9488,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef backend fill:#3b82f6,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef tools fill:#6366f1,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef db fill:#8b5cf6,stroke:#fff,stroke-width:2px,color:#fff;
+    
+    class UI,Chat,Logs,Visuals frontend;
+    class API,Agent backend;
+    class SQL,Pandas,ChartGen,Anomaly tools;
+    class Duck,PG db;
 ```
 <img width="1472" height="1072" alt="image" src="https://github.com/user-attachments/assets/c3689711-565d-4e93-9a11-ad507e222df7" />
 
