@@ -75,6 +75,25 @@ function App() {
     setSelectedDataset(null)
   }
 
+  const handleDeleteSession = async (e, id) => {
+    e.stopPropagation()
+    try {
+      const res = await fetch(`/api/sessions/${id}`, { method: 'DELETE' })
+      if (res.ok) {
+        setSessions(prev => prev.filter(s => s.id !== id))
+        if (sessionId === id) {
+          setSessionId(null)
+          setHistory([])
+        }
+        showToast('Chat deleted successfully', 'success')
+      } else {
+        showToast('Failed to delete chat')
+      }
+    } catch (err) {
+      showToast('Error deleting chat')
+    }
+  }
+
   const handleUpload = async (e) => {
     const file = e.target.files[0]
     if (!file) return
@@ -274,9 +293,16 @@ function App() {
               <div className="px-4 pb-4 space-y-1 overflow-y-auto">
                 {sessions.length === 0 && <p className="px-2 text-outline-variant text-xs italic">No past conversations</p>}
                 {sessions.map((s, i) => (
-                  <div key={i} onClick={() => loadSession(s.id)} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all ${sessionId === s.id ? 'bg-surface-variant/20 border border-surface-variant/30' : 'hover:bg-surface-variant/10 border border-transparent'}`}>
+                  <div key={i} onClick={() => loadSession(s.id)} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer group transition-all ${sessionId === s.id ? 'bg-surface-variant/20 border border-surface-variant/30' : 'hover:bg-surface-variant/10 border border-transparent'}`}>
                     <span className="material-symbols-outlined text-outline-variant text-[16px]">chat_bubble</span>
                     <span className="font-body-sm text-sm text-inverse-on-surface truncate flex-1">{s.title}</span>
+                    <button 
+                      onClick={(e) => handleDeleteSession(e, s.id)} 
+                      className="opacity-0 group-hover:opacity-100 p-1 rounded-md text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-all shrink-0"
+                      title="Delete Chat"
+                    >
+                      <span className="material-symbols-outlined text-[16px] block">delete</span>
+                    </button>
                   </div>
                 ))}
               </div>

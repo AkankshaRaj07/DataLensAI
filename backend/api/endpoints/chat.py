@@ -86,3 +86,13 @@ def get_session_history(session_id: int, db: Session = Depends(get_db)):
             "chart": m.chart
         })
     return history
+
+@router.delete("/sessions/{session_id}")
+def delete_session(session_id: int, db: Session = Depends(get_db)):
+    db_session = db.query(DBSession).filter(DBSession.id == session_id).first()
+    if not db_session:
+        raise HTTPException(status_code=404, detail="Session not found")
+    db.query(DBMessage).filter(DBMessage.session_id == session_id).delete()
+    db.delete(db_session)
+    db.commit()
+    return {"status": "success"}

@@ -12,9 +12,9 @@ logger = logging.getLogger(__name__)
 # Configure Gemini
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY", ""))
 
-def run_sql_tool(query: str) -> str:
-    """Executes a SQL query against the loaded datasets using DuckDB and returns the results as JSON."""
-    return run_sql(query)
+def run_sql_tool(query: str = "", queries: str = "") -> str:
+    """Executes a SQL query against the loaded datasets using DuckDB and returns the results as JSON. You MUST pass the SQL to the 'query' argument."""
+    return run_sql(query or queries)
 
 def run_pandas_tool(code: str) -> str:
     """Executes sandboxed pandas Python code. You have access to pd, np, and all table names as variables. You MUST assign the final output to a variable named 'result'."""
