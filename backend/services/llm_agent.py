@@ -104,6 +104,12 @@ async def process_chat_message(
         }
         
     except Exception as e:
-        logger.error(f"LLM Error: {e}")
-        return {"error": str(e), "answer": f"I encountered an error while processing your request: {e}"}
+        error_str = str(e)
+        logger.error(f"LLM Error: {error_str}")
+        
+        if "ResourceExhausted" in error_str or "429" in error_str:
+            friendly_msg = "You have hit the Google Gemini API free-tier rate limit (15 requests per minute). Please wait about 60 seconds and try asking your question again!"
+            return {"error": error_str, "answer": friendly_msg}
+            
+        return {"error": error_str, "answer": f"I encountered an error while processing your request: {error_str}"}
 
