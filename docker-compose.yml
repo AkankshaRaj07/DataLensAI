@@ -8,13 +8,13 @@ services:
       POSTGRES_DB: prism_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
   backend:
     build:
       context: ./backend
+    restart: always
     ports:
-      - "8001:8000"
-    volumes:
-      - ./backend:/app
+      - "8000:8000"
     environment:
       - GEMINI_API_KEY=${GEMINI_API_KEY:-}
       - DATABASE_URL=postgresql+psycopg2://prism_user:prism_password@db:5432/prism_db
@@ -24,13 +24,9 @@ services:
   frontend:
     build:
       context: ./frontend
+    restart: always
     ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+      - "80:80"
     depends_on:
       - backend
 

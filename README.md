@@ -38,11 +38,11 @@ GEMINI_API_KEY=your_api_key_here
    ```
 4. Wait for the containers to start up.
 5. Open your browser and navigate to:
-   - **Frontend UI:** [http://localhost:5173](http://localhost:5173)
+   - **Frontend UI:** [http://localhost](http://localhost)
    - **Backend API Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ## How to use the app
-1. Go to the Frontend UI (`http://localhost:5173`).
+1. Go to the Frontend UI (`http://localhost`).
 2. Click **Upload Dataset** in the left sidebar to upload a `.csv` file.
 3. You can click on the dataset name in the sidebar to preview the raw data table.
 4. Use the chat box at the bottom to ask analytical questions (e.g., "Show me a chart of the top 5 countries").
