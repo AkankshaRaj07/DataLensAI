@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pandas
+duckdb
+python-multipart
+google-generativeai
+tenacity
+SQLAlchemy
+psycopg2-binary
+pydantic
+plotly
