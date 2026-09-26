@@ -86,6 +86,7 @@ graph TD
     Tools -->|JSON Results| Agent
     Agent -->|Markdown & Chart Config| Chat
 ```
+<img width="1472" height="1072" alt="image" src="https://github.com/user-attachments/assets/c3689711-565d-4e93-9a11-ad507e222df7" />
 
 - `/frontend`: React application. `App.jsx` handles state, UI rendering, and layout. `index.css` contains custom glassmorphism styling and custom webkit scrollbars.
 - `/backend/api`: FastAPI endpoints. Includes routers for `/chat`, `/upload`, `/sessions`, and `/datasets`.
