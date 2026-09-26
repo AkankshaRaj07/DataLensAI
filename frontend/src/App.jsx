@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Plot from 'react-plotly.js'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import './index.css'
 
 function App() {
@@ -441,8 +442,8 @@ function App() {
                       <span className="font-headline-sm text-base text-on-surface font-bold tracking-tight">Data Lens Analyst</span>
                     </div>
                     
-                    <div className="font-body-md text-[15px] text-on-surface leading-relaxed prose prose-sm max-w-none prose-p:my-2 prose-headings:mb-3 prose-headings:mt-6 prose-li:my-1">
-                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    <div className="font-body-md text-[15px] text-on-surface leading-relaxed prose prose-sm max-w-none prose-p:my-2 prose-headings:mb-3 prose-headings:mt-6 prose-li:my-1 prose-table:border-collapse prose-th:border prose-th:border-surface-container-high prose-th:bg-surface-container prose-th:px-3 prose-th:py-2 prose-td:border prose-td:border-surface-container prose-td:px-3 prose-td:py-2">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
                     </div>
                     
                     {msg.chart && (

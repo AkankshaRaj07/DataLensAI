@@ -6,15 +6,8 @@ load_dotenv()
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY", ""))
 
 try:
-    model = genai.GenerativeModel('gemini-1.5-flash-latest')
+    model = genai.GenerativeModel('gemini-3.8-flash')
     response = model.generate_content("Hello")
-    print("latest:", response.text)
+    print("3.8-flash:", response.text)
 except Exception as e:
-    print("latest error:", e)
-
-try:
-    model = genai.GenerativeModel('gemini-pro')
-    response = model.generate_content("Hello")
-    print("pro:", response.text)
-except Exception as e:
-    print("pro error:", e)
+    print("3.8-flash error:", e)
