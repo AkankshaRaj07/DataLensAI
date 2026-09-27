@@ -16,6 +16,7 @@ Data Lens AI allows you to instantly upload `.csv` datasets and chat with an AI 
 ## Tech Stack
 - **Frontend:** React, Vite, Tailwind CSS, Plotly.js
 - **Backend:** Python, FastAPI, DuckDB (for analytical queries), SQLAlchemy
+- **Database:** PostgreSQL (for persisting chat sessions)
 - **AI Integration:** Google Generative AI (`gemini-flash-lite-latest`) with fast-fail retry logic to gracefully handle Free-Tier rate limits without Nginx timeouts.
 
 ## Prerequisites
@@ -101,7 +102,17 @@ flowchart LR
     class SQL,Pandas,ChartGen,Anomaly tools;
     class Duck,PG db;
 ```
-<img width="1472" height="1072" alt="image" src="https://github.com/user-attachments/assets/c3689711-565d-4e93-9a11-ad507e222df7" />
+## Screenshots
+
+<img src="imgs/Screenshot 2026-09-27 124602.png" alt="Screenshot 1" width="100%" />
+<br>
+<img src="imgs/Screenshot 2026-09-27 124615.png" alt="Screenshot 2" width="100%" />
+<br>
+<img src="imgs/Screenshot 2026-09-27 124632.png" alt="Screenshot 3" width="100%" />
+<br>
+<img src="imgs/Screenshot 2026-09-27 124641.png" alt="Screenshot 4" width="100%" />
+
+
 
 - `/frontend`: React application. `App.jsx` handles state, UI rendering, and layout. `index.css` contains custom glassmorphism styling and custom webkit scrollbars.
 - `/backend/api`: FastAPI endpoints. Includes routers for `/chat`, `/upload`, `/sessions`, and `/datasets`.
