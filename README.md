@@ -16,8 +16,7 @@ Data Lens AI allows you to instantly upload `.csv` datasets and chat with an AI 
 ## Tech Stack
 - **Frontend:** React, Vite, Tailwind CSS, Plotly.js
 - **Backend:** Python, FastAPI, DuckDB (for analytical queries), SQLAlchemy
-- **Database:** PostgreSQL (for persisting chat sessions)
-- **AI Integration:** Google Generative AI (`gemini-1.5-flash`)
+- **AI Integration:** Google Generative AI (`gemini-flash-lite-latest`) with fast-fail retry logic to gracefully handle Free-Tier rate limits without Nginx timeouts.
 
 ## Prerequisites
 - **Docker Desktop** must be running on your system.
