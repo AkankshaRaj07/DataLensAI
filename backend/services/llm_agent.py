@@ -53,7 +53,7 @@ async def process_chat_message(
 
     try:
         model = genai.GenerativeModel(
-            model_name='gemini-3.8-flash',
+            model_name='gemini-flash-lite-latest',
             tools=[run_sql_tool, run_pandas_tool, generate_chart_tool, detect_anomalies_tool],
             system_instruction=system_prompt
         )
