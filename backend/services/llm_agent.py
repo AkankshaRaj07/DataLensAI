@@ -61,8 +61,8 @@ async def process_chat_message(
         chat = model.start_chat(enable_automatic_function_calling=True)
 
         @retry(
-            wait=wait_exponential(multiplier=1, min=4, max=20),
-            stop=stop_after_attempt(5),
+            wait=wait_exponential(multiplier=1, min=2, max=5),
+            stop=stop_after_attempt(2),
             retry=retry_if_exception_type(ResourceExhausted)
         )
         def _send():
