@@ -1,5 +1,7 @@
 # Data Lens AI
 
+Demo Link : https://drive.google.com/file/d/1V7gtqDUIcMXGCtkQ6KloHt_3-nKEHJOL/view?usp=drivesdk
+
 A production-ready data analysis dashboard built with React (Vite), TailwindCSS, FastAPI, DuckDB, and PostgreSQL.
 
 Data Lens AI allows you to instantly upload `.csv` datasets and chat with an AI Analyst. The AI can execute internal SQL and Pandas queries to analyze your data and dynamically render interactive Plotly charts right in the chat.
